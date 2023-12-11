@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<biblioteca>
+    <cancion nombre="Calma">
+        <artista>Pedro Capo</artista>
+        <album>Calma</album>
+        <imagen></imagen>
+        <ruta>/run/media/arch-ab/Archivos/Music/Spanis Music/00 - Calma (Ft.Farruko).mp3</ruta>
+    </cancion>
+    <cancion nombre="Voy a Beber">
+        <artista>Nicky Jam</artista>
+        <album>Nicky Jam: Hits</album>
+        <imagen></imagen>
+        <ruta>/run/media/arch-ab/Archivos/Music/Spanis Music/02 - Nicky JamVoy a Beber.mp3</ruta>
+    </cancion>
+    <cancion nombre="Con Calma">
+        <artista>Daddy Yankee</artista>
+        <album>Con calma y mis grandes éxitos</album>
+        <imagen></imagen>
+        <ruta>/run/media/arch-ab/Archivos/Music/Spanis Music/01 - Con Calma.mp3</ruta>
+    </cancion>
+</biblioteca>
