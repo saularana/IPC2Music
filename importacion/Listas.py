@@ -37,25 +37,31 @@ class ListaDobleEnlazada:
             cancion = canciones(nombre, artista, album, imagen, ruta, repeticiones)
             self.agregar_cancion(cancion)
             
-    def exportar_a_xml(self,ruta_archivo):
+    def exportar_a_xml(self, ruta_archivo):
         root = ET.Element("canciones")
-        
+    
         actual = self.inicio
         while actual:
-            cancion_elem = ET.SubElement(root,"cancion")
-            cancion_elem.set = ('nombre', actual.cancion.getnombre())
-            artista_elem = ET.SubElement(cancion_elem,"artista")
+            cancion_elem = ET.SubElement(root, "cancion")
+            cancion_elem.set('nombre', actual.cancion.getnombre())
+    
+            artista_elem = ET.SubElement(cancion_elem, "artista")
             artista_elem.text = actual.cancion.getartista()
-            album_elem = ET.SubElement(cancion_elem,"album")
+    
+            album_elem = ET.SubElement(cancion_elem, "album")
             album_elem.text = actual.cancion.getalbum()
-            imagen_elem = ET.SubElement(cancion_elem,"imagen")
+    
+            imagen_elem = ET.SubElement(cancion_elem, "imagen")
             imagen_elem.text = actual.cancion.getimagen()
-            ruta_elem = ET.SubElement(cancion_elem,"ruta")
+    
+            ruta_elem = ET.SubElement(cancion_elem, "ruta")
             ruta_elem.text = actual.cancion.getruta()
-            repeticiones_elem = ET.SubElement(cancion_elem,"repeticiones")
+    
+            repeticiones_elem = ET.SubElement(cancion_elem, "repeticiones")
             repeticiones_elem.text = str(actual.cancion.getrepeticiones())
-            
+    
             actual = actual.siguiente
+    
         tree = ET.ElementTree(root)
         tree.write(ruta_archivo)
             

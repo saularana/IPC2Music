@@ -29,4 +29,6 @@ lista_doble_enalzada.imprimir_lista()
 print ("================================================================")
 listaartista = filtrar_por_artista(lista_doble_enalzada,"Daddy Yankee")
 listaartista.imprimir_lista()
+listaartista.exportar_a_xml("/home/arch-ab/Github/IPC2Music/pruebaexport.xml")
+
 
