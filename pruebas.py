@@ -5,7 +5,7 @@ from importacion.Listas import *
 
 
 # Ejemplo de uso
-ruta_xml = '/home/arch-ab/Github/IPC2Music/pruebadeddatos.xml'
+ruta_xml = 'pruebadeddatos.xml'
 # canciones_cargadas =  import_xml.cargar_canciones_desde_xml(ruta_xml)
 lista_doble_enalzada = ListaDobleEnlazada()
 lista_doble_enalzada.importar_desde_xml(ruta_xml)
@@ -27,8 +27,9 @@ def filtrar_por_artista(lista_original, nombre_artitsta):
     
 lista_doble_enalzada.imprimir_lista()
 print ("================================================================")
-listaartista = filtrar_por_artista(lista_doble_enalzada,"Daddy Yankee")
+print ("Filtra por artista")
+listaartista = filtrar_por_artista(lista_doble_enalzada,"Pedro Capo")
 listaartista.imprimir_lista()
-listaartista.exportar_a_xml("/home/arch-ab/Github/IPC2Music/pruebaexport.xml")
+listaartista.exportar_a_xml("pruebaexport.xml")
 
 

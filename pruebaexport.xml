@@ -1,16 +1,1 @@
-<canciones>
-    <cancion nombre="Voy a Beber">
-        <artista>Daddy Yankee</artista>
-        <album>Nicky Jam: Hits</album>
-        <imagen />
-        <ruta>/run/media/arch-ab/Archivos/Music/Spanis Music/02 - Nicky JamVoy a Beber.mp3</ruta>
-        <repeticiones>None</repeticiones>
-    </cancion>
-    <cancion nombre="Con Calma">
-        <artista>Daddy Yankee</artista>
-        <album>Con calma y mis grandes &#233;xitos</album>
-        <imagen />
-        <ruta>/run/media/arch-ab/Archivos/Music/Spanis Music/01 - Con Calma.mp3</ruta>
-        <repeticiones>None</repeticiones>
-    </cancion>
-</canciones>
+<canciones><cancion nombre="Calma"><artista>Pedro Capo</artista><album>Calma</album><imagen /><ruta>/run/media/arch-ab/Archivos/Music/Spanis Music/00 - Calma (Ft.Farruko).mp3</ruta><repeticiones>None</repeticiones></cancion></canciones>
