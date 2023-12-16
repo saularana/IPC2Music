@@ -42,7 +42,7 @@ def reproducir_musica(carpeta_musica):
         pygame.time.Clock().tick(10)
 
 if __name__ == "__main__":
-    carpeta_musica = "tu_carpeta_de_musica"
+    carpeta_musica = "pruebadeddatos.xml"
     reproducir_musica(carpeta_musica)
 
 # Crear la ventana principal

@@ -10,11 +10,10 @@ class Nodo:
 
 class ListaDobleEnlazada:
     def __init__(self):
+        self.nombre=""
         self.inicio = None
         self.fin = None
-<<<<<<< HEAD
         self.tamanio=0
-=======
         
     def obtener_nodo_actual(self):
         # Devuelve el nodo actual
@@ -29,7 +28,6 @@ class ListaDobleEnlazada:
         # Retrocede al nodo anterior
         if self.nodo_actual and self.nodo_actual.anterior:
             self.nodo_actual = self.nodo_actual.anterior
->>>>>>> 8b3e28227e3c4bdb4bd5d8b2818135234eb751a3
 
     def agregar_cancion(self, cancion):
         nuevo_nodo = Nodo(cancion)
