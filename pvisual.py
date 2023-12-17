@@ -2,6 +2,7 @@ import tkinter as tk
 from tkinter import ttk
 from PIL import Image, ImageTk
 import pygame
+import threading
 from importacion.Cancion import canciones
 from importacion.Listas import *
 from reproductor.Reproductor import reproducir_musica
@@ -33,21 +34,33 @@ class ReproductorApp:
 
     def iniciar_pausar_cancion(self):
         if not self.reproduciendo:
-            reproducir_musica(self.lista_de_canciones.nodo_actual, self.tiempo_reproduccion_actual)
+            # Utilizar threading para reproducir música en segundo plano
+            self.music_thread = threading.Thread(target=self.reproducir_musica_en_hilo)
+            self.music_thread.start()
             self.reproduciendo = True
         else:
-            self.tiempo_reproduccion_actual = pygame.mixer.music.get_pos() // 1000  # Almacena el tiempo actual
+            self.tiempo_reproduccion_actual = pygame.mixer.music.get_pos() // 1000
             pygame.mixer.music.pause()
             self.reproduciendo = False
 
+    def reproducir_musica_en_hilo(self):
+        try:
+            reproducir_musica(self.lista_de_canciones.nodo_actual, self.tiempo_reproduccion_actual)
+        except FileNotFoundError:
+            print("¡Archivo no encontrado! Pasando a la siguiente canción.")
+            # Pasa automáticamente a la siguiente canción
+            self.siguiente_cancion()
+
     def siguiente_cancion(self):
         self.lista_de_canciones.avanzar_nodo()
-        reproducir_musica(self.lista_de_canciones.nodo_actual, self.tiempo_reproduccion_actual)
+        self.music_thread = threading.Thread(target=self.reproducir_musica_en_hilo)
+        self.music_thread.start()
         self.reproduciendo = True
 
     def anterior_cancion(self):
         self.lista_de_canciones.retroceder_nodo()
-        reproducir_musica(self.lista_de_canciones.nodo_actual, self.tiempo_reproduccion_actual)
+        self.music_thread = threading.Thread(target=self.reproducir_musica_en_hilo)
+        self.music_thread.start()
         self.reproduciendo = True
 
     def run(self):
