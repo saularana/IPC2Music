@@ -1,4 +1,30 @@
+from tkinter import filedialog
+from tkinter import messagebox
+from tkinter import ttk
 import tkinter as tk
+import importacion.FuncionLista as FuncionLista
+import importacion.Listas as Listas
+#Listas de Reproduccion
+lista_de_Canciones = Listas.ListaDobleEnlazada()
+listas_de_reproduccion = Listas.ListaDobleEnlazada()
+lista_actual_reproduccion = Listas.ListaDobleEnlazada()
+
+def mostrar_alerta(mensaje):
+    messagebox.showinfo("Alerta", mensaje)
+
+def seleccionar_archivo():
+       try: 
+            opciones_archivo = {
+            'filetypes': [('Archivos XML', '*.xml')],
+            'title': 'Seleccionar Archivo XML'
+            }   
+            ruta_archivo = filedialog.askopenfilename(**opciones_archivo)
+            lista_de_Canciones.importar_desde_xml(ruta_archivo)
+            mostrar_alerta("Se han cargado las canciones correctamente correctamente")
+            print(lista_de_Canciones.tamanio)
+       except:
+            print("Error al cargar el archivo")
+       
 
 def centrar_ventana(ventana):
     ventana.update_idletasks()
@@ -17,9 +43,9 @@ titulo = tk.Label(text="IPC Music", bg="lightblue", pady=10)
 titulo.grid(columnspan=3)
 
 # Botones menú
-boton_archivo = tk.Button(text="Archivo")
-boton_archivo.grid(row=1, column=0, sticky="w")
-
+boton_archivo = tk.Button(text="Carga Canciones")
+boton_archivo.grid(row=1, column=0, sticky="w") 
+boton_archivo.config(command=seleccionar_archivo)   
 boton_reporte = tk.Button(text="Reporte")
 boton_reporte.grid(row=1, column=1, sticky="w")
 
@@ -55,7 +81,7 @@ lbl_artista.grid(row=0, column=1, sticky="w")
 lbl_artista = tk.Label(frame_labels, text="Artista", padx=10, pady=5)
 lbl_artista.grid(row=1, column=0, sticky="w")
 
-lbl_artista = tk.Label(frame_labels, text="Juan Gabriel", padx=10, pady=5)
+lbl_artista = tk.Label(frame_labels, text="--", padx=10, pady=5)
 lbl_artista.grid(row=1, column=1, sticky="w")
 
 lbl_album = tk.Label(frame_labels, text="Álbum", padx=10, pady=5)
@@ -82,15 +108,19 @@ separador_vertical.grid(row=0, column=2)
 
 # Contenedor para la Listbox y el botón "Agregar a Lista"
 frame_lista = tk.Frame()
-frame_lista.grid(row=6, column=1, columnspan=3, sticky="e")
+frame_lista.grid(row=5, column=0, columnspan=3, sticky="e")
 
 # Listbox
-lista_canciones = tk.Listbox(frame_lista, width=30, height=5)
+lista_canciones = tk.Listbox(frame_lista, width=50, height=12)
 lista_canciones.grid(row=0, column=0)
 
-# Botón "Agregar a Lista"
-boton_agregar_lista = tk.Button(frame_lista, text="Agregar a Lista", padx=10, pady=5)
-boton_agregar_lista.grid(row=0, column=1)
 
+
+
+
+# Botón "Agregar a Lista"
+boton_agregar_lista = tk.Button(frame_lista, text="Listas de Reproduccion", padx=10, pady=5, command=FuncionLista.iniciar_interfaz_lista_reproduccion)
+boton_agregar_lista.grid(row=0, column=1)
+ventana.geometry("500x700")
 centrar_ventana(ventana)
 ventana.mainloop()

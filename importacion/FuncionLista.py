@@ -1,4 +1,5 @@
 from importacion.Listas import *
+import tkinter as tk
 import random
 
 #Valida la existencia con el nombre de la lista de reproduccion
@@ -11,7 +12,7 @@ def validad_existencia_lista(nombre, listas_de_reproduccion):
             return True
         actual=actual.siguiente
     return False
-#Crea la lista de reproduccion ya validadno que no exista    
+#Crea la lista de reproduccion ya validando que no exista    
 def crear_lista_nueva(nombre,listas_de_reproduccion):
     if validad_existencia_lista(nombre, listas_de_reproduccion):
         print("La lista de reproduccion ya existe")
@@ -36,7 +37,41 @@ def obtener_cancion_aleatoria(lista_original):
     indice = random.randint(0, lista_original.tamanio-1)
     return lista_original.obtener_cancion_por_indice(indice)
 
+def InterfazListaReproduccion(ventana):
+        master = ventana
+        master.title("Lista de Reproducción")
+        #Contenedor para botones
+        frame_botones = tk.Frame(master)
+        frame_botones.grid(row=3, column=1, columnspan=3, sticky="e")
+        #Botones
+        boton_nueva_lista = tk.Button(frame_botones, text="Nueva Lista", padx=10, pady=5, command=crear_lista_nueva)
+        boton_nueva_lista.grid(row=0, column=1)
+        boton_crear_lista_aleatoria = tk.Button(frame_botones, text="Lista Aleatoria", padx=10, pady=5, command=generar_lista_aleatoria)
+        boton_crear_lista_aleatoria.grid(row=1, column=1)
+        boton_ver_lista = tk.Button(frame_botones, text="Ver Listas", padx=10, pady=5)
+        boton_ver_lista.grid(row=2, column=1)
+        
+     
+        
+        def agregar_cancion(self):
+            cancion = self.entry_cancion.get()
+            if cancion:
+                self.lista_reproduccion.agregar_cancion(cancion)
+                self.entry_cancion.delete(0, tk.END)
 
+        def mostrar_lista(self):
+            lista = self.lista_reproduccion.obtener_lista()
+            if lista:
+                mensaje = "\n".join(lista)
+            else:
+                mensaje = "La lista de reproducción está vacía."
+            tk.messagebox.showinfo("Lista de Reproducción", mensaje)
+
+def iniciar_interfaz_lista_reproduccion():
+    ventana = tk.Tk()
+    ventana.geometry("400x300")
+    interfazReproduccion = InterfazListaReproduccion(ventana)
+    ventana.mainloop()
 
     
 

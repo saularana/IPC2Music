@@ -1,4 +1,4 @@
-class canciones:
+class Cancion:
     def __init__(self,nombre,artista,album,imagen,ruta,repeticiones):
         self.__nombre=nombre
         self.__artista=artista

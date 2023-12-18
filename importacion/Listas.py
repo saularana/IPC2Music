@@ -1,5 +1,5 @@
 import xml.etree.ElementTree as ET
-from importacion.Cancion import canciones
+from importacion.Cancion import Cancion
 class Nodo:
     def __init__(self, cancion):
         self.cancion = cancion
@@ -10,16 +10,20 @@ class ListaDobleEnlazada:
     def __init__(self):
         self.inicio = None
         self.fin = None
+        self.tamanio = 0
 
     def agregar_cancion(self, cancion):
         nuevo_nodo = Nodo(cancion)
         if not self.inicio:
             self.inicio = nuevo_nodo
             self.fin = nuevo_nodo
+            self.tamanio += 1
         else:
             nuevo_nodo.anterior = self.fin
             self.fin.siguiente = nuevo_nodo
             self.fin = nuevo_nodo
+            self.tamanio += 1
+    
             
             
     def importar_desde_xml(self, ruta_archivo):
@@ -34,7 +38,7 @@ class ListaDobleEnlazada:
             ruta = cancion_elem.find('ruta').text
             repeticiones = cancion_elem.find('repeticiones')
 
-            cancion = canciones(nombre, artista, album, imagen, ruta, repeticiones)
+            cancion = Cancion(nombre, artista, album, imagen, ruta, repeticiones)
             self.agregar_cancion(cancion)
             
     def exportar_a_xml(self, ruta_archivo):
