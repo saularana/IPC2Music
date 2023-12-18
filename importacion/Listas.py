@@ -85,3 +85,58 @@ class ListaDobleEnlazada:
             print(f"Ruta: {actual.cancion.getruta()}")
             print("----------------------")
             actual = actual.siguiente
+
+    def generar_reporte_html(self):
+        html_content = """
+        <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+            <title>Reporte de Canciones</title>
+        </head>
+        <body>
+            <div class="container mt-5">
+                <h2 class="mb-4">Reporte de Canciones</h2>
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th scope="col">Nombre</th>
+                            <th scope="col">Artista</th>
+                            <th scope="col">Álbum</th>
+                            <th scope="col">Imagen</th>
+                            <th scope="col">Ruta</th>
+                            <th scope="col">Repeticiones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+        """
+
+        actual = self.inicio
+        while actual:
+            html_content += f"""
+                <tr>
+                    <td>{actual.cancion.getnombre()}</td>
+                    <td>{actual.cancion.getartista()}</td>
+                    <td>{actual.cancion.getalbum()}</td>
+                    <td>{actual.cancion.getimagen()}</td>
+                    <td>{actual.cancion.getruta()}</td>
+                    <td>{actual.cancion.getrepeticiones()}</td>
+                </tr>
+            """
+            actual = actual.siguiente
+
+        html_content += """
+                    </tbody>
+                </table>
+            </div>
+            <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+        </body>
+        </html>
+        """
+
+        with open('reporte_canciones.html', 'w') as file:
+            file.write(html_content)

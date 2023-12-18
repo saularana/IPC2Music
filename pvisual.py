@@ -6,6 +6,7 @@ import threading
 from importacion.Cancion import canciones
 from importacion.Listas import *
 from reproductor.Reproductor import reproducir_musica
+import webbrowser
 
 class ReproductorApp:
     def __init__(self):
@@ -28,11 +29,13 @@ class ReproductorApp:
         self.btn_siguiente_cancion = tk.Button(self.root, text="Siguiente", command=self.siguiente_cancion)
         self.btn_anterior_cancion = tk.Button(self.root, text="Anterior", command=self.anterior_cancion)
         self.btn_exportar_lista = tk.Button(self.root, text="Exportar", command=self.exportar)
+        self.btn_reporte = tk.Button(self.root, text="Reporte", command=self.generar_reporte_html)
 
         # Posicionamiento de botones
         self.btn_siguiente_cancion.pack(side=tk.LEFT, padx=5)
         self.btn_anterior_cancion.pack(side=tk.LEFT, padx=5)
         self.btn_exportar_lista.pack(side=tk.LEFT, padx=5)
+        self.btn_reporte.pack(side=tk.LEFT, padx=5)
 
     def iniciar_pausar_cancion(self):
         if not self.reproduciendo:
@@ -80,6 +83,15 @@ class ReproductorApp:
             print("Exportación exitosa.")
         except Exception as e:
             print(f"Error al exportar: {e}")
+
+    def generar_reporte_html(self):
+        lista = ListaDobleEnlazada()
+        lista.importar_desde_xml('C:/Users/eg574/OneDrive/Escritorio/IPC2Music-main-1.3/pruebadeddatos.xml')
+        lista.generar_reporte_html()
+
+    def abrir_reporte(self):
+        self.generar_reporte_html()
+        webbrowser.open_new_tab('reporte_canciones.html')
 
 # Crear una instancia de la aplicación
 reproductor_app = ReproductorApp()
