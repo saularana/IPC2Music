@@ -27,10 +27,12 @@ class ReproductorApp:
         # Otros botones
         self.btn_siguiente_cancion = tk.Button(self.root, text="Siguiente", command=self.siguiente_cancion)
         self.btn_anterior_cancion = tk.Button(self.root, text="Anterior", command=self.anterior_cancion)
+        self.btn_exportar_lista = tk.Button(self.root, text="Exportar", command=self.exportar)
 
         # Posicionamiento de botones
         self.btn_siguiente_cancion.pack(side=tk.LEFT, padx=5)
         self.btn_anterior_cancion.pack(side=tk.LEFT, padx=5)
+        self.btn_exportar_lista.pack(side=tk.LEFT, padx=5)
 
     def iniciar_pausar_cancion(self):
         if not self.reproduciendo:
@@ -66,6 +68,18 @@ class ReproductorApp:
     def run(self):
         # Ejecutar la aplicación
         self.root.mainloop()
+        
+    def exportar(self):
+        # Utilizar threading para exportar en segundo plano
+        export_thread = threading.Thread(target=self.exportar_en_hilo)
+        export_thread.start()
+
+    def exportar_en_hilo(self):
+        try:
+            self.lista_de_canciones.exportar_a_xml("/home/arch-ab/Github/IPC2Music/prueba_exportar.xml")
+            print("Exportación exitosa.")
+        except Exception as e:
+            print(f"Error al exportar: {e}")
 
 # Crear una instancia de la aplicación
 reproductor_app = ReproductorApp()

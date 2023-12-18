@@ -5,7 +5,7 @@ class canciones:
         self.__album=album
         self.__imagen=imagen
         self.__ruta=ruta
-        self.__repeticiones=repeticiones
+        self.__repeticiones = repeticiones if repeticiones is not None else 0
 
     def getnombre(self):
         return self.__nombre        

@@ -28,9 +28,9 @@ def reproducir_musica(nodo, tiempo_reproduccion=0):
     # Verificar si se reprodujo más de la mitad y agregar una reproducción
     if tiempo_actual >= duracion_total / 2:
         nodo.cancion.setrepeticiones(nodo.cancion.getrepeticiones() + 1)
-        print(f"las repeticiones de la cancion {nodo.cancion.getnombre} es {nodo.cancion.get}")
+        print(f"las repeticiones de la cancion {nodo.cancion.getnombre}() es {nodo.cancion.getrepeticiones()}")
 
     # Verificar si la canción ha finalizado y agregar una repetición
     if tiempo_actual >= duracion_total:
         nodo.cancion.setrepeticiones(nodo.cancion.getrepeticiones() + 1)
-        print(f"las repeticiones de la cancion {nodo.cancion.getnombre} es {nodo.cancion.get}")
+        print(f"las repeticiones de la cancion {nodo.cancion.getnombre()} es {nodo.cancion.getrepeticiones()}")
