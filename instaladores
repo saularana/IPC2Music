@@ -14,3 +14,4 @@ sudo pacman -S python-pillow tk ffmpeg
 
 
 
+pip install PyQt5
