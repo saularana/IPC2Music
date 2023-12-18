@@ -30,6 +30,6 @@ class canciones:
         self.__imagen=imagen        
     def setruta(self,ruta):
         self.__ruta=ruta
-    def setrepeticiones(self,repeticiones):
-        if (repeticiones>self.__repeticiones) :
-            self.__repeticiones=repeticiones
+    def setrepeticiones(self, repeticiones):
+        if repeticiones is not None and repeticiones > self.__repeticiones:
+            self.__repeticiones = repeticiones

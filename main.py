@@ -3,9 +3,20 @@ from tkinter import filedialog
 from PIL import Image, ImageTk
 import os
 
+def expandir_ultima_columna(event):
+    ancho_ventana = event.width
+    frame_inferior.grid_columnconfigure(num_columnas_frame_inferior - 1, weight=1)
+    
+def agregar_items_listbox(lista_items):
+    actual = lista_items.inicio
+    while actual:
+        listbox.insert(tk.END, actual.cancion.getnombre())
+        actual = actual.siguiente
+    
+    
 # Crear la ventana
 ventana = tk.Tk()
-
+ventana.bind('<Configure>', expandir_ultima_columna)
 # Establecer el tamaño de la ventana
 ventana.geometry("800x500")  # Ancho x Alto
 
@@ -49,7 +60,7 @@ label_album.grid(row=2, column=1, rowspan=3, padx=5, pady=5, sticky=tk.E)
 
 # Frame inferior para botones y Listbox
 frame_inferior = tk.Frame(ventana)
-frame_inferior.grid(row=1, column=0, columnspan=2, padx=5, pady=5, sticky=tk.W + tk.E + tk.N + tk.S)
+frame_inferior.grid(row=1, column=0, padx=5, pady=5, sticky=tk.W + tk.E + tk.N + tk.S)
 
 # Botones
 btn_iniciar_pausar_cancion = tk.Button(frame_inferior, text="Play")
@@ -71,7 +82,8 @@ listbox.insert(tk.END, "Canción 2")
 listbox.insert(tk.END, "Canción 3")
 
 # Iniciar el bucle principal de Tkinter
-num_columnas_ventana = ventana.grid_size()[0]
-print("Número de columnas en la ventana:", num_columnas_ventana)
+num_columnas_frame_inferior = frame_inferior.grid_size()[0]
+print("Número de columnas en el frame_inferior:", num_columnas_frame_inferior)
+
 
 ventana.mainloop()

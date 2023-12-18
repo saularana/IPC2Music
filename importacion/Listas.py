@@ -1,7 +1,5 @@
 import xml.etree.ElementTree as ET
 from importacion.Cancion import canciones
-
-
 class Nodo:
     def __init__(self, cancion):
         self.cancion = cancion
@@ -10,37 +8,18 @@ class Nodo:
 
 class ListaDobleEnlazada:
     def __init__(self):
-        self.nombre=""
         self.inicio = None
         self.fin = None
-        self.tamanio=0
-        
-    def obtener_nodo_actual(self):
-        # Devuelve el nodo actual
-        return self.nodo_actual
-
-    def avanzar_nodo(self):
-        # Avanza al siguiente nodo
-        if self.nodo_actual and self.nodo_actual.siguiente:
-            self.nodo_actual = self.nodo_actual.siguiente
-
-    def retroceder_nodo(self):
-        # Retrocede al nodo anterior
-        if self.nodo_actual and self.nodo_actual.anterior:
-            self.nodo_actual = self.nodo_actual.anterior
 
     def agregar_cancion(self, cancion):
         nuevo_nodo = Nodo(cancion)
         if not self.inicio:
             self.inicio = nuevo_nodo
             self.fin = nuevo_nodo
-            self.tamanio+=1
         else:
             nuevo_nodo.anterior = self.fin
             self.fin.siguiente = nuevo_nodo
             self.fin = nuevo_nodo
-            nuevo_nodo.siguiente = self.inicio
-            self.tamanio+=1
             
             
     def importar_desde_xml(self, ruta_archivo):
@@ -85,18 +64,17 @@ class ListaDobleEnlazada:
     
         tree = ET.ElementTree(root)
         tree.write(ruta_archivo)
+            
     
-    def filtrar_por_artista(self, nombre_artista):
-        nueva_lista = ListaDobleEnlazada()
-        actual = self.inicio
+    def  filtrar_por_artista(self,nombre_artista):
+        nueva_lista=ListaDobleEnlazada()
+        actual=self.inicio
         while actual:
-            if actual.cancion.getartista() == nombre_artista:
+            if actual.cancion.getartista()==nombre_artista:
                 nueva_lista.agregar_cancion(actual.cancion)
-            actual = actual.siguiente
+            actual=actual.siguiente
         return nueva_lista
-    
 
-        
     def imprimir_lista(self):
         actual = self.inicio
         while actual:
