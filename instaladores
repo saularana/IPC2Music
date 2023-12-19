@@ -2,16 +2,3 @@ pip install pygame
 pip install pillow
 pip install tk
 pip install imageio[ffmpeg]
-
-
-
-
-
-
-sudo pacman -S python-pillow tk ffmpeg
-
-
-
-
-
-pip install PyQt5
