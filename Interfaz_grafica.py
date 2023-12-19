@@ -29,11 +29,17 @@ def reproducir_cancion():
             actual.cancion.setrepeticiones(repeticiones_actuales+1)
             mostrar_alerta(f"Se añadió una reproducción a la canción: {titulo} - {artista}")
             lista_de_Canciones.imprimir_lista()
+            lbl_album1.config(text=album)
+            lbl_artista1.config(text=artista)
+            lbl_cancion1.config(text=titulo)
             return
         actual = actual.siguiente
 
     # Si llega aquí, no se encontró la canción
     mostrar_alerta("No se encontró la canción en la lista.")
+    lbl_album1.config(text="--")
+    lbl_artista1.config(text="--")
+    lbl_cancion1.config(text="--")
 
 def mostrar_alerta(mensaje):
     messagebox.showinfo("Alerta", mensaje)
@@ -116,20 +122,20 @@ frame_labels.grid(row=4, column=1, columnspan=3, sticky="e")
 lbl_cancion = tk.Label(frame_labels, text="Cancion", padx=10, pady=5)
 lbl_cancion.grid(row=0, column=0, sticky="w")
 
-lbl_artista = tk.Label(frame_labels, text="--", padx=10, pady=5)
-lbl_artista.grid(row=0, column=1, sticky="w")
+lbl_cancion1 = tk.Label(frame_labels, text="--", padx=10, pady=5)
+lbl_cancion1.grid(row=0, column=1, sticky="w")
 
 lbl_artista = tk.Label(frame_labels, text="Artista", padx=10, pady=5)
 lbl_artista.grid(row=1, column=0, sticky="w")
 
-lbl_artista = tk.Label(frame_labels, text="--", padx=10, pady=5)
-lbl_artista.grid(row=1, column=1, sticky="w")
+lbl_artista1 = tk.Label(frame_labels, text="--", padx=10, pady=5)
+lbl_artista1.grid(row=1, column=1, sticky="w")
 
 lbl_album = tk.Label(frame_labels, text="Álbum", padx=10, pady=5)
 lbl_album.grid(row=2, column=0, sticky="w")
 
-lbl_album = tk.Label(frame_labels, text="--", padx=10, pady=5)
-lbl_album.grid(row=2, column=1, sticky="w")
+lbl_album1 = tk.Label(frame_labels, text="--", padx=10, pady=5)
+lbl_album1.grid(row=2, column=1, sticky="w")
 
 # Botones cambiar canción
 boton_atras = tk.Button(frame_labels, text="⏮️", padx=10, pady=5)
