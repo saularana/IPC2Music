@@ -87,6 +87,7 @@ class ListaDobleEnlazada:
             print(f"Álbum: {actual.cancion.getalbum()}")
             print(f"Imagen: {actual.cancion.getimagen()}")
             print(f"Ruta: {actual.cancion.getruta()}")
+            print(f"Repeticiones: {actual.cancion.getrepeticiones()}")
             print("----------------------")
             actual = actual.siguiente
 

@@ -9,6 +9,32 @@ lista_de_Canciones = Listas.ListaDobleEnlazada()
 listas_de_reproduccion = Listas.ListaDobleEnlazada()
 lista_actual_reproduccion = Listas.ListaDobleEnlazada()
 
+def reproducir_cancion():
+    # Obtener el item seleccionado en el Treeview
+    seleccion = tree.selection()
+    if not seleccion:
+        mostrar_alerta("Selecciona una canción antes de reproducir.")
+        return
+
+    # Obtener los datos de la canción seleccionada
+    item_seleccionado = tree.item(seleccion, "values")
+    artista, titulo, album = item_seleccionado
+
+    # Buscar la canción en la lista_de_Canciones
+    actual = lista_de_Canciones.inicio
+    while actual:
+        if actual.cancion.getartista() == artista and actual.cancion.getnombre() == titulo and actual.cancion.getalbum() == album:
+            # Encontró la canción, añadir una reproducción
+            repeticiones_actuales = actual.cancion.getrepeticiones()
+            actual.cancion.setrepeticiones(repeticiones_actuales+1)
+            mostrar_alerta(f"Se añadió una reproducción a la canción: {titulo} - {artista}")
+            lista_de_Canciones.imprimir_lista()
+            return
+        actual = actual.siguiente
+
+    # Si llega aquí, no se encontró la canción
+    mostrar_alerta("No se encontró la canción en la lista.")
+
 def mostrar_alerta(mensaje):
     messagebox.showinfo("Alerta", mensaje)
 
@@ -35,7 +61,6 @@ def seleccionar_archivo():
 
                 # Mover al siguiente nodo
                 actual = actual.siguiente
-                
        except:
             print(f"Error al cargar el archivo: {e}")
        
@@ -75,6 +100,7 @@ frame_botones.grid(row=2, column=1, columnspan=3, sticky="e")
 # Botones control
 boton_iniciar = tk.Button(frame_botones, text="▶", padx=10, pady=5)
 boton_iniciar.grid(row=0, column=0)
+boton_iniciar.config(command=reproducir_cancion)
 
 boton_pausar = tk.Button(frame_botones, text="⏸️", padx=10, pady=5)
 boton_pausar.grid(row=0, column=1)
