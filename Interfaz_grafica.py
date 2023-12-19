@@ -22,8 +22,22 @@ def seleccionar_archivo():
             lista_de_Canciones.importar_desde_xml(ruta_archivo)
             mostrar_alerta("Se han cargado las canciones correctamente correctamente")
             print(lista_de_Canciones.tamanio)
+            # Limpiar el Treeview antes de agregar nuevos datos
+            tree.delete(*tree.get_children())
+
+            actual = lista_de_Canciones.inicio
+            while actual:
+                # Formatear los datos como desees antes de insertarlos
+                datos_formateados = (actual.cancion.getartista(), actual.cancion.getnombre(), actual.cancion.getalbum())
+
+                # Insertar en el Treeview
+                tree.insert("", tk.END, values=datos_formateados)
+
+                # Mover al siguiente nodo
+                actual = actual.siguiente
+                
        except:
-            print("Error al cargar el archivo")
+            print(f"Error al cargar el archivo: {e}")
        
 
 def centrar_ventana(ventana):
@@ -37,6 +51,7 @@ def centrar_ventana(ventana):
 # Ventana principal
 ventana = tk.Tk()
 ventana.title("IPC Music")
+ventana.resizable(False,False)
 
 # Título
 titulo = tk.Label(text="IPC Music", bg="lightblue", pady=10)
@@ -110,9 +125,20 @@ separador_vertical.grid(row=0, column=2)
 frame_lista = tk.Frame()
 frame_lista.grid(row=5, column=0, columnspan=3, sticky="e")
 
-# Listbox
-lista_canciones = tk.Listbox(frame_lista, width=50, height=12)
-lista_canciones.grid(row=0, column=0)
+# Treeview
+columnas = ("Artista", "Título", "Álbum")
+tree = ttk.Treeview(frame_lista, columns=columnas, show="headings")
+
+# Configurar nombres de columnas
+for columna in columnas:
+    tree.heading(columna, text=columna)
+    tree.column(columna, width=150)
+
+tree.grid(row=0, column=0)
+
+# Botón "Agregar a Lista"
+boton_agregar_lista = tk.Button(frame_lista, text="Listas de Reproduccion", padx=10, pady=5, command=FuncionLista.iniciar_interfaz_lista_reproduccion)
+boton_agregar_lista.grid(row=0, column=1)
 
 
 
@@ -121,6 +147,6 @@ lista_canciones.grid(row=0, column=0)
 # Botón "Agregar a Lista"
 boton_agregar_lista = tk.Button(frame_lista, text="Listas de Reproduccion", padx=10, pady=5, command=FuncionLista.iniciar_interfaz_lista_reproduccion)
 boton_agregar_lista.grid(row=0, column=1)
-ventana.geometry("500x700")
+ventana.geometry("700x500")
 centrar_ventana(ventana)
 ventana.mainloop()
