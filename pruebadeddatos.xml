@@ -1,21 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <biblioteca>
-    <cancion nombre="Calma">
-        <artista>Pedro Capo</artista>
-        <album>Calma</album>
+    <cancion nombre="Se fue la luz">
+        <artista>Latin Mafia</artista>
+        <album>Nueva Era</album>
         <imagen></imagen>
-        <ruta>/run/media/arch-ab/Archivos/Music/Spanis Music/00 - Calma (Ft.Farruko).mp3</ruta>
+        <ruta>C:/Users/eg574/OneDrive/Escritorio/Music/LATIN MAFIA, Jesse Baez - Se fue la luz.mp3</ruta>
     </cancion>
-    <cancion nombre="Voy a Beber">
-        <artista>Daddy Yankee</artista>
-        <album>Nicky Jam: Hits</album>
+    <cancion nombre="Flores">
+        <artista>Latin Mafia</artista>
+        <album>Hits</album>
         <imagen></imagen>
-        <ruta>/run/media/arch-ab/Archivos/Music/Spanis Music/02 - Nicky JamVoy a Beber.mp3</ruta>
+        <ruta>C:/Users/eg574/OneDrive/Escritorio/Music/LATIN MAFIA - FLORES.mp3</ruta>
     </cancion>
-    <cancion nombre="Con Calma">
-        <artista>Daddy Yankee</artista>
-        <album>Con calma y mis grandes éxitos</album>
+    <cancion nombre="Entre Nosotros Remix">
+        <artista>Tiago pzk, lit killah, maria becerra, nicki nicole</artista>
+        <album>despertar</album>
         <imagen></imagen>
-        <ruta>/run/media/arch-ab/Archivos/Music/Spanis Music/01 - Con Calma.mp3</ruta>
+        <ruta>C:/Users/eg574/OneDrive/Escritorio/Music/Entre Nosotros REMIX.mp3</ruta>
     </cancion>
 </biblioteca>
